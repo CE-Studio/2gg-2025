@@ -69,6 +69,10 @@ game_action_mouse={
 ]
 }
 
+[physics]
+
+2d/default_gravity=1781.77
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
