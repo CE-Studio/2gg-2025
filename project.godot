@@ -73,6 +73,10 @@ game_action_mouse={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="Masks"
+
 [physics]
 
 2d/default_gravity=1781.77

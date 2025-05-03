@@ -1,11 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5d6qc38wwf14"]
+[gd_scene load_steps=10 format=3 uid="uid://c5d6qc38wwf14"]
 
 [ext_resource type="Script" uid="uid://b7woowd5nj8oi" path="res://scripts/mask.gd" id="1_in0c2"]
 [ext_resource type="Texture2D" uid="uid://b4lajwnvvmft0" path="res://assets/textures/particles/star0.svg" id="2_0d8jk"]
 [ext_resource type="Texture2D" uid="uid://bibayrb2j0jjg" path="res://assets/textures/Masks.png" id="2_rv8xw"]
 
 [sub_resource type="Curve" id="Curve_xsism"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.683824, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -10.5577, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.375, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.00102, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_uscli"]
@@ -27,8 +27,8 @@ angle_min = -45.0
 angle_max = 45.0
 direction = Vector3(0, -1, 0)
 spread = 25.0
-initial_velocity_min = 12.0
-initial_velocity_max = 48.0
+initial_velocity_min = 16.0
+initial_velocity_max = 52.0
 angular_velocity_min = -180.0
 angular_velocity_max = 180.0
 damping_max = 30.0
@@ -37,26 +37,34 @@ scale_max = 1.5
 scale_curve = SubResource("CurveTexture_8u57e")
 alpha_curve = SubResource("CurveTexture_uscli")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0d8jk"]
-atlas = ExtResource("2_rv8xw")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xsism"]
-atlas = ExtResource("2_rv8xw")
-region = Rect2(48, 0, 48, 48)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d8jk"]
+size = Vector2(42, 42)
 
 [node name="Mask" type="Node2D"]
 script = ExtResource("1_in0c2")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Particles" type="GPUParticles2D" parent="Visuals"]
 amount = 16
 texture = ExtResource("2_0d8jk")
 randomness = 0.75
 draw_order = 0
 process_material = SubResource("ParticleProcessMaterial_0iq2y")
 
-[node name="Base" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_0d8jk")
+[node name="Base" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("2_rv8xw")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 48)
 
-[node name="Eyes" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_xsism")
+[node name="Eyes" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("2_rv8xw")
+region_enabled = true
+region_rect = Rect2(48, 0, 48, 48)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0d8jk")
