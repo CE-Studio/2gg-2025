@@ -23,11 +23,16 @@ func _ready() -> void:
 	origin = position
 	base.region_rect.position.y = 48 * mask_type
 	eyes.region_rect.position.y = 48 * mask_type
+	match mask_type:
+		1: particles.texture = load("res://assets/textures/particles/star1.svg")
+		2: particles.texture = load("res://assets/textures/particles/star2.svg")
+		3: particles.texture = load("res://assets/textures/particles/star3.svg")
+		4: particles.texture = load("res://assets/textures/particles/star4.svg")
 
 
 func _process(delta: float) -> void:
 	visuals.position.y = position.y + (sin(float_cycle) * FLOAT_CYCLE_AMPLITUDE)
 	float_cycle += FLOAT_CYCLE_SPEED * delta
 	var eye_cycle_state = abs(sin(eye_cycle))
-	eyes.modulate.a = clampf(randf(), (eye_cycle_state * 0.5), eye_cycle_state)
+	eyes.modulate.a = clampf(randf() * 2.0, (eye_cycle_state * 0.5), eye_cycle_state)
 	eye_cycle += EYE_CYCLE_SPEED * delta
