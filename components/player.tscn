@@ -10,10 +10,15 @@ height = 96.0
 [node name="player" type="CharacterBody2D"]
 physics_interpolation_mode = 1
 script = ExtResource("1_51jd6")
+mask_state = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_errlg")
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.375, 0.75)
+texture = ExtResource("2_uapwn")
+
+[node name="pointer" type="Sprite2D" parent="."]
+scale = Vector2(0.284, 0.284)
 texture = ExtResource("2_uapwn")
