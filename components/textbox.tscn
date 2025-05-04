@@ -1,7 +1,93 @@
-[gd_scene load_steps=3 format=3 uid="uid://cicpu7si3lo8s"]
+[gd_scene load_steps=13 format=3 uid="uid://cicpu7si3lo8s"]
 
 [ext_resource type="Script" uid="uid://bqmytwf67tgsx" path="res://components/textbox.gd" id="1_0qpvj"]
 [ext_resource type="Texture2D" uid="uid://c6bgm1bk7lcp6" path="res://icon.svg" id="1_fdgt3"]
+[ext_resource type="Script" uid="uid://cxdb4sgo5as0f" path="res://scripts/text_wiggle.gd" id="3_ahp4d"]
+[ext_resource type="Script" uid="uid://b5bx2k7tkuw30" path="res://scripts/text_jitter.gd" id="4_hfq4m"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hfq4m"]
+script = ExtResource("3_ahp4d")
+metadata/_custom_type_script = "uid://cxdb4sgo5as0f"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kl86f"]
+script = ExtResource("4_hfq4m")
+metadata/_custom_type_script = "uid://b5bx2k7tkuw30"
+
+[sub_resource type="Animation" id="Animation_ahp4d"]
+resource_name = "new_animation"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Control/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat64Array(0, 0.5),
+"transitions": PackedFloat64Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_hfq4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Control/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat64Array(0),
+"transitions": PackedFloat64Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kl86f"]
+_data = {
+&"RESET": SubResource("Animation_hfq4m"),
+&"new_animation": SubResource("Animation_ahp4d")
+}
+
+[sub_resource type="Animation" id="Animation_kl86f"]
+resource_name = "a"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat64Array(0, 0.05),
+"transitions": PackedFloat64Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_832rx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat64Array(0),
+"transitions": PackedFloat64Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_33dfv"]
+_data = {
+&"RESET": SubResource("Animation_832rx"),
+&"a": SubResource("Animation_kl86f")
+}
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_0qpvj")
@@ -56,6 +142,7 @@ layout_mode = 2
 [node name="Icon" type="Sprite2D" parent="Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Control"]
 position = Vector2(96, 96)
 texture = ExtResource("1_fdgt3")
+hframes = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -71,4 +158,20 @@ theme_override_constants/margin_bottom = 4
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 bbcode_enabled = true
+text = "[~]hehehehe~[/~]
+[j]AAAAAGH![/j]"
 scroll_active = false
+custom_effects = [SubResource("RichTextEffect_hfq4m"), SubResource("RichTextEffect_kl86f")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kl86f")
+}
+autoplay = "new_animation"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_33dfv")
+}
+
+[connection signal="visibility_changed" from="." to="." method="_visibility_changed"]
