@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://csqm0l5oeiwgc"]
+[gd_scene load_steps=6 format=4 uid="uid://csqm0l5oeiwgc"]
 
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_74lek"]
+[ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_74lek"]
 [ext_resource type="TileSet" uid="uid://0i0mkh462snc" path="res://assets/tiles/ts1.tres" id="1_errlg"]
 [ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="2_bl13t"]
 [ext_resource type="PackedScene" uid="uid://crg35yqsbxdkb" path="res://components/mask.tscn" id="3_iyx0m"]
+[ext_resource type="Script" uid="uid://b6de04oanrhh3" path="res://scripts/dline.gd" id="5_j5jx5"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_74lek")
@@ -33,3 +34,24 @@ mask_type = 4
 [node name="Mask5" parent="." instance=ExtResource("3_iyx0m")]
 position = Vector2(856, -72)
 mask_type = 5
+
+[node name="testlines" type="Node" parent="."]
+
+[node name="l1" type="Node" parent="testlines"]
+script = ExtResource("5_j5jx5")
+lines = Array[String](["This is a test"])
+metadata/_custom_type_script = "uid://b6de04oanrhh3"
+
+[node name="l2" type="Node" parent="testlines" node_paths=PackedStringArray("focus")]
+script = ExtResource("5_j5jx5")
+focus = NodePath("../../Mask4")
+lines = Array[String](["[~]This is a test[/~]", "Multiline and focus"])
+metadata/_custom_type_script = "uid://b6de04oanrhh3"
+
+[node name="l3" type="Node" parent="testlines"]
+script = ExtResource("5_j5jx5")
+lines = Array[String](["[j]AAAAA[/j]"])
+metadata/_custom_type_script = "uid://b6de04oanrhh3"
+
+[connection signal="done" from="testlines/l1" to="testlines/l2" method="run"]
+[connection signal="done" from="testlines/l2" to="testlines/l3" method="run"]
