@@ -15,7 +15,7 @@ var can_grab:bool = true:
 	set(value):
 		if can_grab != value:
 			modulate.a = 1.0 if value else 0.0
-			box.disabled = not value
+			box.set_deferred(&"disabled", not value)
 		can_grab = value
 
 @onready var visuals:Node2D = $"Visuals"
