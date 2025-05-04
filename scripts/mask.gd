@@ -38,13 +38,13 @@ func _ready() -> void:
 			spawn_particles = preload("res://components/particles/collect_effect_1.tscn")
 		3:
 			particles.texture = preload("res://assets/textures/particles/star2.svg")
-			spawn_particles = preload("res://components/particles/collect_effect_0.tscn")
+			spawn_particles = preload("res://components/particles/collect_effect_2.tscn")
 		4:
 			particles.texture = preload("res://assets/textures/particles/star3.svg")
-			spawn_particles = preload("res://components/particles/collect_effect_0.tscn")
+			spawn_particles = preload("res://components/particles/collect_effect_3.tscn")
 		5:
 			particles.texture = preload("res://assets/textures/particles/star4.svg")
-			spawn_particles = preload("res://components/particles/collect_effect_0.tscn")
+			spawn_particles = preload("res://components/particles/collect_effect_4.tscn")
 	float_cycle = randf() * TAU
 	eye_cycle = randf() * TAU
 
