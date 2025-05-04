@@ -17,6 +17,7 @@ var can_grab:bool = true:
 			modulate.a = 1.0 if value else 0.0
 			box.set_deferred(&"disabled", not value)
 		can_grab = value
+var spawn_particles:PackedScene
 
 @onready var visuals:Node2D = $"Visuals"
 @onready var base:Sprite2D = $"Visuals/Base"
@@ -30,10 +31,20 @@ func _ready() -> void:
 	base.region_rect.position.y = 48 * (mask_type - 1)
 	eyes.region_rect.position.y = 48 * (mask_type - 1)
 	match mask_type:
-		2: particles.texture = load("res://assets/textures/particles/star1.svg")
-		3: particles.texture = load("res://assets/textures/particles/star2.svg")
-		4: particles.texture = load("res://assets/textures/particles/star3.svg")
-		5: particles.texture = load("res://assets/textures/particles/star4.svg")
+		1:
+			spawn_particles = preload("res://components/particles/collect_effect_0.tscn")
+		2:
+			particles.texture = preload("res://assets/textures/particles/star1.svg")
+			spawn_particles = preload("res://components/particles/collect_effect_1.tscn")
+		3:
+			particles.texture = preload("res://assets/textures/particles/star2.svg")
+			spawn_particles = preload("res://components/particles/collect_effect_0.tscn")
+		4:
+			particles.texture = preload("res://assets/textures/particles/star3.svg")
+			spawn_particles = preload("res://components/particles/collect_effect_0.tscn")
+		5:
+			particles.texture = preload("res://assets/textures/particles/star4.svg")
+			spawn_particles = preload("res://components/particles/collect_effect_0.tscn")
 	float_cycle = randf() * TAU
 	eye_cycle = randf() * TAU
 
@@ -49,3 +60,6 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.mask_state = mask_type
+		var new_spawn_particles = spawn_particles.instantiate()
+		get_parent().add_child(new_spawn_particles)
+		new_spawn_particles.position = position
