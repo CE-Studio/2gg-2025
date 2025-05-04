@@ -58,32 +58,28 @@ func _ready() -> void:
 	state_changed.emit()
 	GlobalCamera.tracking = self
 	GlobalCamera.tracking_obj = true
+	_sync_motion()
 
 
 func _sync_motion() -> void:
 	match mask_state:
 		Masks.NONE:
-			JUMP_VELOCITY = -810.0
 			up_direction = Vector2.UP
 			pointer.hide()
 		Masks.FOX:
-			JUMP_VELOCITY = -810.0
 			up_direction = Vector2.UP
 			pointer.show()
 		Masks.GECKO:
 			pointer.hide()
 		Masks.BEAR:
-			JUMP_VELOCITY = -810.0
 			up_direction = Vector2.UP
 			pointer.show()
 		Masks.CAT:
-			JUMP_VELOCITY = -810.0
 			up_direction = Vector2.UP
 			pointer.hide()
 		Masks.BEETLE:
-			JUMP_VELOCITY = -810.0
 			up_direction = Vector2.UP
-			pointer.hide()
+			pointer.show()
 
 
 func _physics_process(delta:float) -> void:
@@ -103,7 +99,7 @@ func _physics_process(delta:float) -> void:
 
 
 func _movement_and_input(delta:float) -> void:
-	if not GameState.accepting_input:
+	if not GameState.is_accepting_input():
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, ACCEL * delta)
 		return
@@ -145,7 +141,9 @@ func _masks(delta:float) -> void:
 			Masks.CAT:
 				pass
 			Masks.BEETLE:
-				pass
+				if is_on_wall() and not spent:
+					velocity = dir * 1010
+					spent = true
 	if mask_state == Masks.BEETLE:
 		if Input.is_action_pressed("game_jump"):
 			if is_on_wall():
