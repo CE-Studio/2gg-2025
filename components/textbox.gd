@@ -2,7 +2,7 @@ extends CanvasLayer
 
 
 const CHARS:Array[Texture2D] = [
-	preload("res://icon.svg")
+	preload("res://assets/textures/talk/plane1.png")
 ]
 
 

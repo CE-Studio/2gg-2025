@@ -1,9 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://cicpu7si3lo8s"]
+[gd_scene load_steps=14 format=3 uid="uid://cicpu7si3lo8s"]
 
 [ext_resource type="Script" uid="uid://bqmytwf67tgsx" path="res://components/textbox.gd" id="1_0qpvj"]
 [ext_resource type="Texture2D" uid="uid://c6bgm1bk7lcp6" path="res://icon.svg" id="1_fdgt3"]
 [ext_resource type="Script" uid="uid://cxdb4sgo5as0f" path="res://scripts/text_wiggle.gd" id="3_ahp4d"]
 [ext_resource type="Script" uid="uid://b5bx2k7tkuw30" path="res://scripts/text_jitter.gd" id="4_hfq4m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfq4m"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0.764706, 0.764706, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_hfq4m"]
 script = ExtResource("3_ahp4d")
@@ -12,6 +24,21 @@ metadata/_custom_type_script = "uid://cxdb4sgo5as0f"
 [sub_resource type="RichTextEffect" id="RichTextEffect_kl86f"]
 script = ExtResource("4_hfq4m")
 metadata/_custom_type_script = "uid://b5bx2k7tkuw30"
+
+[sub_resource type="Animation" id="Animation_hfq4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Control/Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat64Array(0),
+"transitions": PackedFloat64Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_ahp4d"]
 resource_name = "new_animation"
@@ -30,25 +57,25 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_hfq4m"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kl86f"]
+_data = {
+&"RESET": SubResource("Animation_hfq4m"),
+&"new_animation": SubResource("Animation_ahp4d")
+}
+
+[sub_resource type="Animation" id="Animation_832rx"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2/MarginContainer/Control/Icon:frame")
+tracks/0/path = NodePath("Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/RichTextLabel:visible_ratio")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat64Array(0),
 "transitions": PackedFloat64Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kl86f"]
-_data = {
-&"RESET": SubResource("Animation_hfq4m"),
-&"new_animation": SubResource("Animation_ahp4d")
+"update": 0,
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_kl86f"]
@@ -66,21 +93,6 @@ tracks/0/keys = {
 "transitions": PackedFloat64Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_832rx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer/RichTextLabel:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat64Array(0),
-"transitions": PackedFloat64Array(1),
-"update": 0,
-"values": [1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_33dfv"]
@@ -127,6 +139,7 @@ layout_mode = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hfq4m")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer2"]
 layout_mode = 2
