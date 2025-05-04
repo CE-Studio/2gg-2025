@@ -18,7 +18,7 @@ enum Masks {
 }
 
 
-signal state_changed
+signal state_changed(mask_id)
 
 
 static var has_mask:Array[bool] = [
@@ -46,7 +46,7 @@ var spent := false
 			_sync_motion()
 		else:
 			_sync_motion.call_deferred()
-		state_changed.emit()
+		state_changed.emit(value)
 
 
 @onready var pointer:Sprite2D = $pointer
