@@ -7,7 +7,7 @@ const FLOAT_CYCLE_SPEED:float = 2.0
 const FLOAT_CYCLE_AMPLITUDE:float = 6.0
 const EYE_CYCLE_SPEED:float = 0.635
 
-@export_enum("None", "Fox", "Gecko", "Bear", "Cat", "Beetle") var mask_type = 1
+@export var mask_type:Player.Masks = Player.Masks.FOX
 
 var float_cycle:float
 var eye_cycle:float
