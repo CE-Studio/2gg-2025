@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://csqm0l5oeiwgc"]
 
-[ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_74lek"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_74lek"]
 [ext_resource type="TileSet" uid="uid://0i0mkh462snc" path="res://assets/tiles/ts1.tres" id="1_errlg"]
 [ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="2_bl13t"]
 [ext_resource type="PackedScene" uid="uid://crg35yqsbxdkb" path="res://components/mask.tscn" id="3_iyx0m"]
@@ -51,11 +51,13 @@ metadata/_custom_type_script = "uid://b6de04oanrhh3"
 [node name="l2" type="Node" parent="testlines" node_paths=PackedStringArray("focus")]
 script = ExtResource("5_j5jx5")
 focus = NodePath("../../Mask4")
+char = 1
 lines = Array[String](["[~]This is a test[/~]", "Multiline and focus"])
 metadata/_custom_type_script = "uid://b6de04oanrhh3"
 
 [node name="l3" type="Node" parent="testlines"]
 script = ExtResource("5_j5jx5")
+char = 3
 lines = Array[String](["[j]AAAAA[/j]"])
 metadata/_custom_type_script = "uid://b6de04oanrhh3"
 
