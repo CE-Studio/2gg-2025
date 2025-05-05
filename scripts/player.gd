@@ -50,6 +50,8 @@ var spent := false
 
 
 @onready var pointer:Sprite2D = $pointer
+@onready var cata:TileMapLayer = $"../cata"
+@onready var catb:TileMapLayer = $"../catb"
 
 
 func _ready() -> void:
@@ -58,6 +60,7 @@ func _ready() -> void:
 	state_changed.emit()
 	GlobalCamera.tracking = self
 	GlobalCamera.tracking_obj = true
+	catb.enabled = false
 	_sync_motion()
 
 
@@ -144,7 +147,8 @@ func _masks(delta:float) -> void:
 			Masks.BEAR:
 				pass
 			Masks.CAT:
-				pass
+				cata.enabled = catb.enabled
+				catb.enabled = !cata.enabled
 			Masks.BEETLE:
 				if is_on_wall() and not spent:
 					velocity = dir * 1010
