@@ -138,7 +138,7 @@ func _masks(delta:float) -> void:
 				pass
 			Masks.FOX:
 				if not spent:
-					velocity = dir * 1010
+					velocity = dir * 1040
 					spent = true
 			Masks.GECKO:
 				if not spent:
