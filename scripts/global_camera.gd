@@ -9,6 +9,7 @@ var bounds:Area2D
 
 
 func _ready() -> void:
+	zoom = Vector2.ONE * 0.7
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
