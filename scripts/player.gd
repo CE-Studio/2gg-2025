@@ -95,9 +95,9 @@ func _physics_process(delta:float) -> void:
 	move_and_slide()
 	if pointer.visible:
 		pointer.look_at(GlobalCamera.get_mouse_pos())
-	if global_position.y > 10000:
-		print("a")
+	if (global_position.y > 10000) or (global_position.y < -10000):
 		velocity = Vector2.ZERO
+		mask_state = Masks.NONE
 		global_position = spawnpoint
 
 
