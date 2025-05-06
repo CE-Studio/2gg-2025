@@ -5,7 +5,7 @@ extends Area2D
 
 
 func _ready() -> void:
-	$"/root/GlobalCamera".bounds = self
+	GlobalCamera.bounds = self
 
 
 func get_coord_bounds() -> Array:
