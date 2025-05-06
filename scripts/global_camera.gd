@@ -20,8 +20,10 @@ func _process(delta: float) -> void:
 	global_position = global_position.lerp(tracking_pos, delta * speed)
 	if bounds != null:
 		var bound_coords = bounds.get_coord_bounds()
-		global_position.x = clampf(global_position.x, bound_coords[0], bound_coords[1])
-		global_position.y = clampf(global_position.y, bound_coords[2], bound_coords[3])
+		var window_size = get_viewport_rect().size / zoom
+		var half_window = window_size * 0.5
+		global_position.x = clampf(global_position.x, bound_coords[0] + half_window.x, bound_coords[1] - half_window.x)
+		global_position.y = clampf(global_position.y, bound_coords[2] + half_window.y, bound_coords[3] - half_window.y)
 
 
 func get_mouse_pos() -> Vector2:

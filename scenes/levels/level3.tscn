@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://doninhx11ncht"]
+
+[ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_frjko"]
+[ext_resource type="TileSet" uid="uid://qtgnhou0ogf6" path="res://assets/tiles/forest.tres" id="2_f7rt6"]
+[ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="3_8w0pe"]
+[ext_resource type="Script" uid="uid://urvnmmk1y32x" path="res://scripts/cam_bounds.gd" id="4_7eb4w"]
+[ext_resource type="PackedScene" path="res://components/levelend.tscn" id="5_hadiw"]
+[ext_resource type="PackedScene" uid="uid://crg35yqsbxdkb" path="res://components/mask.tscn" id="6_72x3h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0mew"]
+size = Vector2(8160, 1295)
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_frjko")
+
+[node name="Background" type="TileMapLayer" parent="."]
+modulate = Color(0.501407, 0.501406, 0.501406, 1)
+tile_set = ExtResource("2_f7rt6")
+collision_enabled = false
+
+[node name="Main" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_f7rt6")
+
+[node name="cata" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_f7rt6")
+
+[node name="catb" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_f7rt6")
+
+[node name="player" parent="." instance=ExtResource("3_8w0pe")]
+position = Vector2(0, -48)
+
+[node name="CamBounds" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("4_7eb4w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CamBounds"]
+position = Vector2(4010, -536.5)
+shape = SubResource("RectangleShape2D_k0mew")
+
+[node name="levelend" parent="." instance=ExtResource("5_hadiw")]
+position = Vector2(8376, -528)
+
+[node name="Mask" parent="." instance=ExtResource("6_72x3h")]
+position = Vector2(2592, -296)
