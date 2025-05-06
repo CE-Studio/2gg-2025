@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=4 uid="uid://c07stm48etnyy"]
 
 [ext_resource type="TileSet" uid="uid://qtgnhou0ogf6" path="res://assets/tiles/forest.tres" id="1_dd0lh"]
-[ext_resource type="Script" path="res://scripts/level.gd" id="1_dywbp"]
+[ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_dywbp"]
 [ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="2_4tcl0"]
 [ext_resource type="Script" uid="uid://urvnmmk1y32x" path="res://scripts/cam_bounds.gd" id="4_bfxgj"]
-[ext_resource type="PackedScene" uid="uid://dmh1saam4tg71" path="res://components/levelend.tscn" id="4_dywbp"]
+[ext_resource type="PackedScene" path="res://components/levelend.tscn" id="4_dywbp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd0lh"]
-size = Vector2(4823, 525)
+size = Vector2(6318, 1535)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_dywbp")
@@ -37,7 +37,7 @@ collision_mask = 0
 script = ExtResource("4_bfxgj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CamBounds"]
-position = Vector2(2341.5, -393.5)
+position = Vector2(2612, -533.5)
 shape = SubResource("RectangleShape2D_dd0lh")
 
 [node name="levelend" parent="." instance=ExtResource("4_dywbp")]

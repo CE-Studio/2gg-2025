@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://duawy7n4ghrt"]
+
+[ext_resource type="PackedScene" uid="uid://crg35yqsbxdkb" path="res://components/mask.tscn" id="1_lnkvm"]
+[ext_resource type="Texture2D" uid="uid://ckw3dsesar4dd" path="res://assets/textures/particles/orb4.svg" id="2_28f78"]
+[ext_resource type="Texture2D" uid="uid://002l50mk7snn" path="res://assets/textures/particles/star4.svg" id="3_knq3g"]
+
+[sub_resource type="Curve" id="Curve_acf8x"]
+_data = [Vector2(0, 0), 0.0, 2.63943, 0, 0, Vector2(0.5, 0.483146), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.67416, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5h517"]
+curve = SubResource("Curve_acf8x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o8o2n"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 12, 0)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = -32.0
+initial_velocity_max = 32.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_5h517")
+
+[sub_resource type="Curve" id="Curve_muuu2"]
+_data = [Vector2(0, 0), 0.0, 2.63943, 0, 0, Vector2(0.492647, 0.876404), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.67416, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pfo0w"]
+curve = SubResource("Curve_muuu2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ka176"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 12, 0)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = -32.0
+initial_velocity_max = 32.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_pfo0w")
+
+[node name="UnmaskField" type="Node2D"]
+
+[node name="Mask" parent="." instance=ExtResource("1_lnkvm")]
+mask_type = 0
+
+[node name="Orbs" type="GPUParticles2D" parent="."]
+amount = 16
+texture = ExtResource("2_28f78")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_o8o2n")
+
+[node name="Stars" type="GPUParticles2D" parent="."]
+amount = 16
+texture = ExtResource("3_knq3g")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_ka176")
