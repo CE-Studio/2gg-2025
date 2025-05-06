@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw3w31n671wbc"]
+[gd_scene load_steps=6 format=3 uid="uid://cw3w31n671wbc"]
 
 [ext_resource type="Script" uid="uid://b04qyr3yhef65" path="res://scripts/player.gd" id="1_51jd6"]
 [ext_resource type="Texture2D" uid="uid://c6bgm1bk7lcp6" path="res://icon.svg" id="2_uapwn"]
+[ext_resource type="Texture2D" uid="uid://dfta1jyct3epe" path="res://assets/textures/pointer.png" id="3_uapwn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_errlg"]
 radius = 24.0
@@ -22,8 +23,8 @@ scale = Vector2(0.375, 0.75)
 texture = ExtResource("2_uapwn")
 
 [node name="pointer" type="Sprite2D" parent="."]
-scale = Vector2(0.284, 0.284)
-texture = ExtResource("2_uapwn")
+scale = Vector2(0.351, 0.351)
+texture = ExtResource("3_uapwn")
 
 [node name="Area2D" type="Area2D" parent="."]
 
