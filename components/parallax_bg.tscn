@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bb3ffncwqr8ja"]
+
+[ext_resource type="Script" uid="uid://cdfr7foklxasv" path="res://scripts/parallax_bg.gd" id="1_gvgf3"]
+[ext_resource type="Texture2D" uid="uid://rhari0bc8hff" path="res://assets/textures/backgrounds/bg0.svg" id="2_4u6jh"]
+[ext_resource type="Texture2D" uid="uid://dfj3mj07jfy3t" path="res://assets/textures/backgrounds/bg1.png" id="3_rhxww"]
+
+[node name="Backgrounds" type="Node2D"]
+script = ExtResource("1_gvgf3")
+
+[node name="BG0" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.15, 0)
+repeat_size = Vector2(1920, 1080)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="BG0"]
+texture = ExtResource("2_4u6jh")
+
+[node name="BG1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0.1)
+repeat_size = Vector2(2400, 1350)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="BG1"]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("3_rhxww")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://c07stm48etnyy"]
+[gd_scene load_steps=8 format=4 uid="uid://c07stm48etnyy"]
 
 [ext_resource type="TileSet" uid="uid://qtgnhou0ogf6" path="res://assets/tiles/forest.tres" id="1_dd0lh"]
 [ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_dywbp"]
+[ext_resource type="PackedScene" uid="uid://bb3ffncwqr8ja" path="res://components/parallax_bg.tscn" id="2_1seuy"]
 [ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="2_4tcl0"]
 [ext_resource type="Script" uid="uid://urvnmmk1y32x" path="res://scripts/cam_bounds.gd" id="4_bfxgj"]
 [ext_resource type="PackedScene" path="res://components/levelend.tscn" id="4_dywbp"]
@@ -11,6 +12,8 @@ size = Vector2(6318, 1535)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_dywbp")
+
+[node name="Backgrounds" parent="." instance=ExtResource("2_1seuy")]
 
 [node name="Background" type="TileMapLayer" parent="."]
 modulate = Color(0.501407, 0.501406, 0.501406, 1)
