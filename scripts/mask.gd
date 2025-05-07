@@ -31,6 +31,8 @@ func _ready() -> void:
 	base.region_rect.position.y = 48 * (mask_type - 1)
 	eyes.region_rect.position.y = 48 * (mask_type - 1)
 	match mask_type:
+		0:
+			particles.emitting = false
 		1:
 			spawn_particles = preload("res://components/particles/collect_effect_0.tscn")
 		2:
@@ -60,6 +62,7 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.mask_state = mask_type
-		var new_spawn_particles = spawn_particles.instantiate()
-		get_parent().add_child(new_spawn_particles)
-		new_spawn_particles.position = position
+		if mask_type != Player.Masks.NONE:
+			var new_spawn_particles = spawn_particles.instantiate()
+			get_parent().add_child(new_spawn_particles)
+			new_spawn_particles.position = position
