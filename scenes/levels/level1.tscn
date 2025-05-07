@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_dywbp"]
 [ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="2_4tcl0"]
 [ext_resource type="Script" uid="uid://urvnmmk1y32x" path="res://scripts/cam_bounds.gd" id="4_bfxgj"]
-[ext_resource type="PackedScene" path="res://components/levelend.tscn" id="4_dywbp"]
+[ext_resource type="PackedScene" uid="uid://dmh1saam4tg71" path="res://components/levelend.tscn" id="4_dywbp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd0lh"]
 size = Vector2(6318, 1535)

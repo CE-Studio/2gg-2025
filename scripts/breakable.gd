@@ -1,5 +1,5 @@
 class_name Breakable
-extends RigidBody2D
+extends StaticBody2D
 
 
 func destroy() -> void:
