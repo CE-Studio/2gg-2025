@@ -30,4 +30,5 @@ func get_mouse_pos() -> Vector2:
 	var vp := get_viewport()
 	var rect := vp.get_visible_rect().size / 2.0
 	var pos := vp.get_mouse_position() - rect
+	pos /= zoom
 	return pos + global_position
