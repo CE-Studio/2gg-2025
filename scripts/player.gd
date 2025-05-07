@@ -38,6 +38,15 @@ static var spawnpoint := Vector2.ZERO
 var jumped := false
 var spent := false
 
+var inrange:Node2D:
+	set(value):
+		inrange = value
+		if mask_state == Masks.BEAR:
+			if value is Throwable:
+				pointer.show()
+			else:
+				pointer.hide()
+
 
 @export var mask_state:Masks = Masks.NONE:
 	set(value):
@@ -52,6 +61,7 @@ var spent := false
 @onready var pointer:Sprite2D = $pointer
 @onready var cata:TileMapLayer = $"../cata"
 @onready var catb:TileMapLayer = $"../catb"
+@onready var hb:CollisionShape2D = $CollisionShape2D
 
 
 func _ready() -> void:
@@ -69,20 +79,26 @@ func _sync_motion() -> void:
 		Masks.NONE:
 			up_direction = Vector2.UP
 			pointer.hide()
+			hb.scale.x = 1
 		Masks.FOX:
 			up_direction = Vector2.UP
 			pointer.show()
+			hb.scale.x = 1
 		Masks.GECKO:
 			pointer.hide()
+			hb.scale.x = 1
 		Masks.BEAR:
 			up_direction = Vector2.UP
-			pointer.show()
+			hb.scale.x = 2
+			pointer.hide()
 		Masks.CAT:
 			up_direction = Vector2.UP
 			pointer.hide()
+			hb.scale.x = 1
 		Masks.BEETLE:
 			up_direction = Vector2.UP
-			pointer.show()
+			pointer.hide()
+			hb.scale.x = 1
 
 
 func _physics_process(delta:float) -> void:
@@ -99,6 +115,10 @@ func _physics_process(delta:float) -> void:
 		velocity = Vector2.ZERO
 		mask_state = Masks.NONE
 		global_position = spawnpoint
+	if spent:
+		pointer.self_modulate = Color.GREEN
+	else:
+		pointer.self_modulate = Color.WHITE
 
 
 func _input(event: InputEvent) -> void:
@@ -145,7 +165,10 @@ func _masks(delta:float) -> void:
 					up_direction.y *= -1
 					spent = true
 			Masks.BEAR:
-				pass
+				if inrange is Breakable:
+					inrange.destroy()
+				elif inrange is Throwable:
+					inrange.apply_central_impulse(dir * 1010)
 			Masks.CAT:
 				cata.enabled = catb.enabled
 				catb.enabled = !cata.enabled
@@ -154,8 +177,22 @@ func _masks(delta:float) -> void:
 					velocity = dir * 1010
 					spent = true
 	if mask_state == Masks.BEETLE:
+		if is_on_wall():
+			pointer.show()
+		else :
+			pointer.hide()
 		if Input.is_action_pressed("game_jump"):
 			if is_on_wall():
 				velocity.y = clampf(velocity.y, -absf(velocity.y), 0)
 			else:
 				velocity.y = clampf(velocity.y, -absf(velocity.y), 100)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if (body is Breakable) or (body is Throwable):
+		inrange = body
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if inrange == body:
+		inrange = null

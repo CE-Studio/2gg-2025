@@ -1,11 +1,19 @@
-[gd_scene load_steps=7 format=4 uid="uid://csqm0l5oeiwgc"]
+[gd_scene load_steps=13 format=4 uid="uid://csqm0l5oeiwgc"]
 
 [ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_74lek"]
 [ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="2_bl13t"]
 [ext_resource type="TileSet" uid="uid://qtgnhou0ogf6" path="res://assets/tiles/forest.tres" id="2_lpvoh"]
 [ext_resource type="PackedScene" uid="uid://crg35yqsbxdkb" path="res://components/mask.tscn" id="3_iyx0m"]
 [ext_resource type="Script" uid="uid://b6de04oanrhh3" path="res://scripts/dline.gd" id="5_j5jx5"]
-[ext_resource type="PackedScene" path="res://components/levelend.tscn" id="6_lpvoh"]
+[ext_resource type="PackedScene" uid="uid://dmh1saam4tg71" path="res://components/levelend.tscn" id="6_lpvoh"]
+[ext_resource type="Script" uid="uid://bq2bjuprvaf7q" path="res://scripts/breakable.gd" id="7_jcd4p"]
+[ext_resource type="Texture2D" uid="uid://c6bgm1bk7lcp6" path="res://icon.svg" id="8_uacia"]
+[ext_resource type="Script" uid="uid://bdh2xhmqrhb33" path="res://scripts/throwable.gd" id="9_uacia"]
+[ext_resource type="PackedScene" uid="uid://c6lif32ob7dan" path="res://components/button.tscn" id="10_yk7ts"]
+[ext_resource type="PackedScene" uid="uid://sog8h7jniq0s" path="res://components/door.tscn" id="11_ajshl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7ts"]
+size = Vector2(130, 128)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_74lek")
@@ -33,7 +41,7 @@ position = Vector2(-464, 16)
 mask_type = 2
 
 [node name="Mask6" parent="." instance=ExtResource("3_iyx0m")]
-position = Vector2(-1137, 119)
+position = Vector2(14, 951)
 mask_type = 3
 
 [node name="Mask3" parent="." instance=ExtResource("3_iyx0m")]
@@ -72,6 +80,35 @@ metadata/_custom_type_script = "uid://b6de04oanrhh3"
 position = Vector2(-952, -294)
 monitorable = false
 scene = "uid://c07stm48etnyy"
+
+[node name="Breakable" type="StaticBody2D" parent="."]
+position = Vector2(840, 943)
+script = ExtResource("7_jcd4p")
+metadata/_custom_type_script = "uid://bq2bjuprvaf7q"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable"]
+shape = SubResource("RectangleShape2D_yk7ts")
+
+[node name="Sprite2D" type="Sprite2D" parent="Breakable"]
+texture = ExtResource("8_uacia")
+
+[node name="throwable" type="RigidBody2D" parent="."]
+position = Vector2(1168, 922)
+script = ExtResource("9_uacia")
+metadata/_custom_type_script = "uid://bdh2xhmqrhb33"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="throwable"]
+shape = SubResource("RectangleShape2D_yk7ts")
+
+[node name="Sprite2D" type="Sprite2D" parent="throwable"]
+texture = ExtResource("8_uacia")
+
+[node name="button" parent="." node_paths=PackedStringArray("doors") instance=ExtResource("10_yk7ts")]
+position = Vector2(-513, 1004)
+doors = [NodePath("../Door")]
+
+[node name="Door" parent="." instance=ExtResource("11_ajshl")]
+position = Vector2(-903, 888)
 
 [connection signal="done" from="testlines/l1" to="testlines/l2" method="run"]
 [connection signal="done" from="testlines/l2" to="testlines/l3" method="run"]
