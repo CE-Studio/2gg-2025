@@ -7,6 +7,7 @@ var outp := false
 
 
 @export var doors:Array[Door] = []
+@export var respawners:Array[Respawner] = []
 @export var sticky := false
 @onready var anim:AnimationPlayer = $AnimationPlayer
 
@@ -19,6 +20,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			outp = true
 			for i in doors:
 				i.operate(true)
+			for i in respawners:
+				i.respawn()
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
