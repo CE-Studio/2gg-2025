@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://csqm0l5oeiwgc"]
+[gd_scene load_steps=14 format=4 uid="uid://csqm0l5oeiwgc"]
 
 [ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_74lek"]
 [ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="2_bl13t"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bdh2xhmqrhb33" path="res://scripts/throwable.gd" id="9_uacia"]
 [ext_resource type="PackedScene" uid="uid://c6lif32ob7dan" path="res://components/button.tscn" id="10_yk7ts"]
 [ext_resource type="PackedScene" uid="uid://sog8h7jniq0s" path="res://components/door.tscn" id="11_ajshl"]
+[ext_resource type="PackedScene" uid="uid://b5ybu2knombo5" path="res://components/char/plane.tscn" id="12_ghpyy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7ts"]
 size = Vector2(130, 128)
@@ -109,6 +110,9 @@ doors = [NodePath("../Door")]
 
 [node name="Door" parent="." instance=ExtResource("11_ajshl")]
 position = Vector2(-903, 888)
+
+[node name="plane" parent="." instance=ExtResource("12_ghpyy")]
+position = Vector2(1900, 694)
 
 [connection signal="done" from="testlines/l1" to="testlines/l2" method="run"]
 [connection signal="done" from="testlines/l2" to="testlines/l3" method="run"]
