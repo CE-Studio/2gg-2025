@@ -20,6 +20,7 @@ script/source = "extends Control
 var fade_flag:bool = true
 var fade_timer:float = 0.0
 var is_fading:bool = false
+var spawn_buffer:float = 1.0
 
 
 func _process(delta: float) -> void:
@@ -31,8 +32,9 @@ func _process(delta: float) -> void:
 		if modulate.a <= 0.0 and not fade_flag:
 			queue_free()
 	modulate.a = fade_timer
-	if position.x >= 2710.0:
+	if position.x >= 2710.0 and spawn_buffer <= 0.0:
 		is_fading = true
+	spawn_buffer -= delta
 "
 
 [node name="Level2" type="Node2D"]
