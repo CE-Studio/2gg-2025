@@ -37,6 +37,7 @@ static var spawnpoint := Vector2.ZERO
 
 var jumped := false
 var spent := false
+var obj_grav_dir := 1.0
 
 var inrange:Node2D:
 	set(value):
@@ -162,6 +163,7 @@ func _masks(delta:float) -> void:
 					spent = true
 			Masks.GECKO:
 				if not spent:
+					obj_grav_dir *= -1
 					up_direction.y *= -1
 					spent = true
 			Masks.BEAR:
