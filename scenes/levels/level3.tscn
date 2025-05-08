@@ -37,7 +37,6 @@ tile_set = ExtResource("2_f7rt6")
 position = Vector2(0, -48)
 
 [node name="CamBounds" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("4_7eb4w")
@@ -48,6 +47,7 @@ shape = SubResource("RectangleShape2D_k0mew")
 
 [node name="levelend" parent="." instance=ExtResource("5_hadiw")]
 position = Vector2(6584, -736)
+scene = "uid://bc1fy65rhup3x"
 
 [node name="Mask" parent="." instance=ExtResource("6_72x3h")]
 position = Vector2(2464, 1120)
