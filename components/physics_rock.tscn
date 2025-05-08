@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt8il47mtl5tw"]
+
+[ext_resource type="Texture2D" uid="uid://dfllay4bmif6n" path="res://assets/textures/physicsrock.svg" id="1_r81se"]
+[ext_resource type="Script" uid="uid://bdh2xhmqrhb33" path="res://scripts/throwable.gd" id="1_x2mpi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2mpi"]
+size = Vector2(140, 140)
+
+[node name="PhysicsRock" type="RigidBody2D"]
+script = ExtResource("1_x2mpi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x2mpi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_r81se")
