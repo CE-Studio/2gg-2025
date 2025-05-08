@@ -94,7 +94,6 @@ texture = ExtResource("8_uacia")
 
 [node name="throwable" type="RigidBody2D" parent="."]
 position = Vector2(1168, 922)
-can_sleep = false
 script = ExtResource("9_uacia")
 metadata/_custom_type_script = "uid://bdh2xhmqrhb33"
 
