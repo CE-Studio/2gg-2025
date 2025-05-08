@@ -12,14 +12,14 @@ extends Node2D
 
 func _process(delta: float) -> void:
 	
-	if canmove  and (not holding) and (targpos != global_position):
+	if canmove and (not holding) and (targpos != global_position):
 		if targpos.x < global_position.x:
 			facing = false
 		elif targpos.x > global_position.x:
 			facing = true
 		global_position = global_position.move_toward(targpos, delta * 400)
 	
-	if canmove  and holding and (holdpos != global_position):
+	if canmove and holding and (holdpos != global_position):
 		if holdpos.x < global_position.x:
 			facing = false
 		elif holdpos.x > global_position.x:
@@ -34,6 +34,10 @@ func _process(delta: float) -> void:
 
 func set_targpos(pos:Vector2) -> void:
 	targpos = pos
+
+
+func set_holdpos(pos:Vector2) -> void:
+	holdpos = pos
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
