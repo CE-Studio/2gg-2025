@@ -113,6 +113,9 @@ position = Vector2(-903, 888)
 
 [node name="plane" parent="." instance=ExtResource("12_ghpyy")]
 position = Vector2(1900, 694)
+targpos = Vector2(1900, 694)
+can_pickup = true
 
 [connection signal="done" from="testlines/l1" to="testlines/l2" method="run"]
 [connection signal="done" from="testlines/l2" to="testlines/l3" method="run"]
+[connection signal="pressed" from="button" to="plane" method="set_targpos" binds= [Vector2(-100, 694)]]

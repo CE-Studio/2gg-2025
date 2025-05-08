@@ -2,6 +2,9 @@ class_name FloorButton
 extends StaticBody2D
 
 
+signal pressed
+
+
 var count:int = 0
 var outp := false
 
@@ -22,6 +25,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				i.operate(true)
 			for i in respawners:
 				i.respawn()
+			pressed.emit()
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
