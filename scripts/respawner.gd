@@ -1,11 +1,15 @@
+class_name Respawner
 extends Node2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var template:PackedScene
+@export var existing:Node2D
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func respawn() -> void:
+	if is_instance_valid(existing):
+		existing.queue_free()
+	var new:Node2D = template.instantiate()
+	get_parent().add_child(new)
+	new.global_position = global_position
+	existing = new
