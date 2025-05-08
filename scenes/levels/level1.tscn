@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://c07stm48etnyy"]
+[gd_scene load_steps=11 format=4 uid="uid://c07stm48etnyy"]
 
 [ext_resource type="TileSet" uid="uid://qtgnhou0ogf6" path="res://assets/tiles/forest.tres" id="1_dd0lh"]
 [ext_resource type="Script" uid="uid://dtrh7jjw75vam" path="res://scripts/level.gd" id="1_dywbp"]
@@ -6,9 +6,30 @@
 [ext_resource type="PackedScene" uid="uid://cw3w31n671wbc" path="res://components/player.tscn" id="2_4tcl0"]
 [ext_resource type="Script" uid="uid://urvnmmk1y32x" path="res://scripts/cam_bounds.gd" id="4_bfxgj"]
 [ext_resource type="PackedScene" path="res://components/levelend.tscn" id="4_dywbp"]
+[ext_resource type="Texture2D" uid="uid://bh4kcw4dl8mgq" path="res://assets/textures/ui/tooltip0.png" id="7_2r1tl"]
+[ext_resource type="Texture2D" uid="uid://xgll17jy5i1v" path="res://assets/textures/ui/tooltip1.png" id="8_8a7m2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd0lh"]
 size = Vector2(6318, 1535)
+
+[sub_resource type="GDScript" id="GDScript_2r1tl"]
+resource_name = "TrackCam"
+script/source = "extends Control
+
+
+var fade_flag:bool = true
+var fade_timer:float = -1.0
+
+
+func _process(delta: float) -> void:
+	position = GlobalCamera.position
+	fade_timer += delta if fade_flag else -delta
+	modulate.a = fade_timer
+	if fade_timer > 3.0:
+		fade_flag = false
+	if modulate.a <= 0.0 and not fade_flag:
+		queue_free()
+"
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_dywbp")
@@ -46,3 +67,37 @@ shape = SubResource("RectangleShape2D_dd0lh")
 [node name="levelend" parent="." instance=ExtResource("4_dywbp")]
 position = Vector2(5048, -247)
 scene = "uid://d1bsv4i2bagy4"
+
+[node name="Tooltips" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_2r1tl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Tooltips"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -346.0
+offset_top = -180.0
+offset_right = 346.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 92
+alignment = 1
+
+[node name="Move" type="TextureRect" parent="Tooltips/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_2r1tl")
+
+[node name="Jump" type="TextureRect" parent="Tooltips/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_8a7m2")
