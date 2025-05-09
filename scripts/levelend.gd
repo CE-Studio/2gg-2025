@@ -5,6 +5,6 @@ extends Area2D
 
 
 func _on_body_entered(body: Node2D) -> void:
-	assert(scene != "")
 	if body is Player:
+		assert(scene != "")
 		get_tree().change_scene_to_file.call_deferred(scene)
