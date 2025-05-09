@@ -210,7 +210,6 @@ tile_set = ExtResource("3_268cy")
 tile_set = ExtResource("3_268cy")
 
 [node name="player" parent="." instance=ExtResource("4_adc7d")]
-z_index = 5
 position = Vector2(0, -48)
 
 [node name="Respawner" type="Marker2D" parent="."]
@@ -340,6 +339,7 @@ position = Vector2(2258, -681)
 
 [node name="levelend" parent="." instance=ExtResource("15_4u223")]
 position = Vector2(4630, -1102)
+scene = "uid://bce3wmtkqhy7f"
 
 [node name="CamBounds" type="Area2D" parent="."]
 collision_layer = 0

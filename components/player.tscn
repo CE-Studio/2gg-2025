@@ -545,6 +545,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 
 [node name="player" type="CharacterBody2D"]
 physics_interpolation_mode = 1
+z_index = 5
 script = ExtResource("1_51jd6")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
