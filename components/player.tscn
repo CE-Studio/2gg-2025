@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://cw3w31n671wbc"]
+[gd_scene load_steps=33 format=3 uid="uid://cw3w31n671wbc"]
 
 [ext_resource type="Script" uid="uid://b04qyr3yhef65" path="res://scripts/player.gd" id="1_51jd6"]
+[ext_resource type="Texture2D" uid="uid://bok60024goxmu" path="res://assets/textures/particles/orb0.svg" id="2_mm1xv"]
 [ext_resource type="Texture2D" uid="uid://dfta1jyct3epe" path="res://assets/textures/pointer.png" id="3_uapwn"]
 [ext_resource type="Texture2D" uid="uid://gwrowf0ca3r1" path="res://assets/textures/char/player/arm.png" id="4_mm1xv"]
 [ext_resource type="Texture2D" uid="uid://60m3q1ru28kf" path="res://assets/textures/char/player/leg.png" id="5_qe8hj"]
@@ -9,6 +10,29 @@
 [ext_resource type="Texture2D" uid="uid://f6fb0vm5hqsg" path="res://assets/textures/char/player/body.png" id="8_jhk7o"]
 [ext_resource type="Texture2D" uid="uid://cdehhntk4nkir" path="res://assets/textures/char/player/head.png" id="9_1wqow"]
 [ext_resource type="Texture2D" uid="uid://bvl0ro4hx0a8d" path="res://assets/textures/char/player/scarf1.png" id="10_6qb5m"]
+
+[sub_resource type="Curve" id="Curve_qe8hj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.37079, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_eju5v"]
+curve = SubResource("Curve_qe8hj")
+
+[sub_resource type="Curve" id="Curve_7ta67"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.370787), -1.34617, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jhk7o"]
+curve = SubResource("Curve_7ta67")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1wqow"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 24.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_jhk7o")
+alpha_curve = SubResource("CurveTexture_eju5v")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_errlg"]
 radius = 24.0
@@ -522,6 +546,11 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 [node name="player" type="CharacterBody2D"]
 physics_interpolation_mode = 1
 script = ExtResource("1_51jd6")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 32
+texture = ExtResource("2_mm1xv")
+process_material = SubResource("ParticleProcessMaterial_1wqow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_errlg")

@@ -59,6 +59,24 @@ var inrange:Node2D:
 		else:
 			_sync_motion.call_deferred()
 		state_changed.emit(value)
+		match value:
+			Masks.NONE:
+				mask_particles.emitting = false
+			Masks.FOX:
+				mask_particles.emitting = true
+				mask_particles.texture = ptcl0
+			Masks.GECKO:
+				mask_particles.emitting = true
+				mask_particles.texture = ptcl1
+			Masks.BEAR:
+				mask_particles.emitting = true
+				mask_particles.texture = ptcl2
+			Masks.CAT:
+				mask_particles.emitting = true
+				mask_particles.texture = ptcl3
+			Masks.BEETLE:
+				mask_particles.emitting = true
+				mask_particles.texture = ptcl4
 
 
 @onready var pointer:Sprite2D = $pointer
@@ -66,6 +84,13 @@ var inrange:Node2D:
 @onready var catb:TileMapLayer = $"../catb"
 @onready var hb:CollisionShape2D = $CollisionShape2D
 @onready var bod:Node2D = $body
+@onready var mask_particles:GPUParticles2D = $GPUParticles2D
+
+@onready var ptcl0:Texture2D = preload("res://assets/textures/particles/orb0.svg")
+@onready var ptcl1:Texture2D = preload("res://assets/textures/particles/orb1.svg")
+@onready var ptcl2:Texture2D = preload("res://assets/textures/particles/orb2.svg")
+@onready var ptcl3:Texture2D = preload("res://assets/textures/particles/orb3.svg")
+@onready var ptcl4:Texture2D = preload("res://assets/textures/particles/orb4.svg")
 
 
 func _ready() -> void:
@@ -75,6 +100,7 @@ func _ready() -> void:
 	GlobalCamera.tracking = self
 	GlobalCamera.tracking_obj = true
 	catb.enabled = false
+	mask_particles.emitting = false
 	_sync_motion()
 
 
