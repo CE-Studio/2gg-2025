@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7woowd5nj8oi" path="res://scripts/mask.gd" id="1_in0c2"]
 [ext_resource type="Texture2D" uid="uid://b4lajwnvvmft0" path="res://assets/textures/particles/star0.svg" id="2_0d8jk"]
-[ext_resource type="Texture2D" uid="uid://bibayrb2j0jjg" path="res://assets/textures/Masks.png" id="2_rv8xw"]
+[ext_resource type="Texture2D" uid="uid://bo642njouhthj" path="res://assets/textures/mask.svg" id="3_gqxeh"]
 
 [sub_resource type="Curve" id="Curve_xsism"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.375, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.00102, 0.0, 0, 0]
@@ -53,12 +53,12 @@ draw_order = 0
 process_material = SubResource("ParticleProcessMaterial_0iq2y")
 
 [node name="Base" type="Sprite2D" parent="Visuals"]
-texture = ExtResource("2_rv8xw")
+texture = ExtResource("3_gqxeh")
 region_enabled = true
 region_rect = Rect2(0, 0, 48, 48)
 
 [node name="Eyes" type="Sprite2D" parent="Visuals"]
-texture = ExtResource("2_rv8xw")
+texture = ExtResource("3_gqxeh")
 region_enabled = true
 region_rect = Rect2(48, 0, 48, 48)
 
