@@ -14,7 +14,9 @@ var eye_cycle:float
 var can_grab:bool = true:
 	set(value):
 		if can_grab != value:
-			modulate.a = 1.0 if value else 0.0
+			modulate.a = 1.0 if value else 0.4
+			eyes.visible = true if value else false
+			particles.emitting = true if value else false
 			box.set_deferred(&"disabled", not value)
 		can_grab = value
 var spawn_particles:PackedScene
