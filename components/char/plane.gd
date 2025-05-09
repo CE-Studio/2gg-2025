@@ -40,6 +40,10 @@ func set_holdpos(pos:Vector2) -> void:
 	holdpos = pos
 
 
+func set_canhold() -> void:
+	can_pickup = true
+
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if can_pickup:
 		if body is Throwable:

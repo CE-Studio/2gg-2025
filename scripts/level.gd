@@ -1,4 +1,4 @@
-class_name Level
+class_name Levelwd
 extends Node2D
 
 

@@ -1631,6 +1631,7 @@ advance_mode = 2
 advance_expression = "global_position != holdpos"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3nm0i"]
+switch_mode = 2
 advance_mode = 2
 advance_expression = "global_position == holdpos"
 
@@ -1662,7 +1663,7 @@ states/walk/position = Vector2(463, 60)
 states/walk_carry/node = SubResource("AnimationNodeAnimation_ro8hf")
 states/walk_carry/position = Vector2(343, 278)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fi6jo"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_f1tfd"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_pyrye"), "idle", "grab", SubResource("AnimationNodeStateMachineTransition_t4ccl"), "walk", "grab", SubResource("AnimationNodeStateMachineTransition_bv7dg"), "grab", "walk_carry", SubResource("AnimationNodeStateMachineTransition_h64ly"), "grab", "lift", SubResource("AnimationNodeStateMachineTransition_3nm0i"), "walk_carry", "lift", SubResource("AnimationNodeStateMachineTransition_k3372"), "lift", "lift 2", SubResource("AnimationNodeStateMachineTransition_unjqq"), "lift 2", "walk_carry", SubResource("AnimationNodeStateMachineTransition_avf1s")]
-graph_offset = Vector2(8, 82)
+graph_offset = Vector2(42, 123)
 
 [node name="plane" type="Node2D"]
 z_index = 3
