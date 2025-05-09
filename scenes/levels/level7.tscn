@@ -176,7 +176,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0cwd"]
-size = Vector2(187, 90)
+size = Vector2(161, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkjcw"]
 size = Vector2(5099, 2602)
@@ -308,7 +308,7 @@ position = Vector2(2641, -873)
 script = ExtResource("12_vnwci")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(-3.5, -35)
+position = Vector2(9.5, 2)
 shape = SubResource("RectangleShape2D_l0cwd")
 
 [node name="2big" type="Node" parent="." node_paths=PackedStringArray("focus")]
