@@ -1,13 +1,28 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6lif32ob7dan"]
 
 [ext_resource type="Script" uid="uid://cy1i2dlus760t" path="res://scripts/button.gd" id="1_bb4ew"]
-[ext_resource type="Texture2D" uid="uid://c6bgm1bk7lcp6" path="res://icon.svg" id="2_5i06l"]
+[ext_resource type="Texture2D" uid="uid://c0sp5tpb71d1o" path="res://assets/textures/button.png" id="2_bb4ew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hyi5"]
 size = Vector2(124, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lloda"]
 size = Vector2(114, 20)
+
+[sub_resource type="Animation" id="Animation_7pgdt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat64Array(0),
+"transitions": PackedFloat64Array(1),
+"update": 0,
+"values": [Vector2(0, -15)]
+}
 
 [sub_resource type="Animation" id="Animation_8jebq"]
 resource_name = "press"
@@ -26,21 +41,6 @@ tracks/0/keys = {
 "values": [Vector2(0, -15), Vector2(0, -5), Vector2(0, -3)]
 }
 
-[sub_resource type="Animation" id="Animation_7pgdt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat64Array(0),
-"transitions": PackedFloat64Array(1),
-"update": 0,
-"values": [Vector2(0, -15)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r2i78"]
 _data = {
 &"RESET": SubResource("Animation_7pgdt"),
@@ -54,13 +54,13 @@ script = ExtResource("1_bb4ew")
 shape = SubResource("RectangleShape2D_8hyi5")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 0.309804, 1, 1)
 position = Vector2(0, -15)
-scale = Vector2(0.859375, 0.15625)
-texture = ExtResource("2_5i06l")
+scale = Vector2(0.901258, 1.39427)
+texture = ExtResource("2_bb4ew")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.96875, 0.109375)
-texture = ExtResource("2_5i06l")
+texture = ExtResource("2_bb4ew")
 
 [node name="Area2D" type="Area2D" parent="."]
 monitorable = false

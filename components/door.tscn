@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://sog8h7jniq0s"]
 
 [ext_resource type="Script" uid="uid://b6h3xqh15mqh7" path="res://scripts/door.gd" id="1_58skw"]
-[ext_resource type="Texture2D" uid="uid://c6bgm1bk7lcp6" path="res://icon.svg" id="2_i24i1"]
+[ext_resource type="Texture2D" uid="uid://crxbsrm267i65" path="res://assets/textures/door.png" id="2_58skw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eany1"]
 size = Vector2(48, 240)
@@ -54,8 +54,7 @@ metadata/_custom_type_script = "uid://b6h3xqh15mqh7"
 shape = SubResource("RectangleShape2D_eany1")
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
-scale = Vector2(0.375, 1.875)
-texture = ExtResource("2_i24i1")
+texture = ExtResource("2_58skw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 callback_mode_process = 0
