@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://crg35yqsbxdkb" path="res://components/mask.tscn" id="3_iyx0m"]
 [ext_resource type="Script" uid="uid://b6de04oanrhh3" path="res://scripts/dline.gd" id="5_j5jx5"]
 [ext_resource type="PackedScene" uid="uid://dmh1saam4tg71" path="res://components/levelend.tscn" id="6_lpvoh"]
-[ext_resource type="Script" uid="uid://bq2bjuprvaf7q" path="res://scripts/breakable.gd" id="7_jcd4p"]
+[ext_resource type="PackedScene" uid="uid://bbrgq53ttrbkh" path="res://components/breakable.tscn" id="7_ghpyy"]
 [ext_resource type="Texture2D" uid="uid://c6bgm1bk7lcp6" path="res://icon.svg" id="8_uacia"]
 [ext_resource type="Script" uid="uid://bdh2xhmqrhb33" path="res://scripts/throwable.gd" id="9_uacia"]
 [ext_resource type="PackedScene" uid="uid://c6lif32ob7dan" path="res://components/button.tscn" id="10_yk7ts"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b5ybu2knombo5" path="res://components/char/plane.tscn" id="12_ghpyy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yk7ts"]
-size = Vector2(130, 128)
+size = Vector2(140, 140)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_74lek")
@@ -82,16 +82,8 @@ position = Vector2(-952, -294)
 monitorable = false
 scene = "uid://c07stm48etnyy"
 
-[node name="Breakable" type="StaticBody2D" parent="."]
+[node name="Breakable" parent="." instance=ExtResource("7_ghpyy")]
 position = Vector2(840, 943)
-script = ExtResource("7_jcd4p")
-metadata/_custom_type_script = "uid://bq2bjuprvaf7q"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable"]
-shape = SubResource("RectangleShape2D_yk7ts")
-
-[node name="Sprite2D" type="Sprite2D" parent="Breakable"]
-texture = ExtResource("8_uacia")
 
 [node name="throwable" type="RigidBody2D" parent="."]
 position = Vector2(1168, 922)
