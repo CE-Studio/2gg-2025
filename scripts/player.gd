@@ -37,7 +37,9 @@ static var spawnpoint := Vector2.ZERO
 
 var jumped := false
 var spent := false
+var facing := true
 var obj_grav_dir := 1.0
+var ong := true
 
 var inrange:Node2D:
 	set(value):
@@ -63,6 +65,7 @@ var inrange:Node2D:
 @onready var cata:TileMapLayer = $"../cata"
 @onready var catb:TileMapLayer = $"../catb"
 @onready var hb:CollisionShape2D = $CollisionShape2D
+@onready var bod:Node2D = $body
 
 
 func _ready() -> void:
@@ -73,6 +76,18 @@ func _ready() -> void:
 	GlobalCamera.tracking_obj = true
 	catb.enabled = false
 	_sync_motion()
+
+
+func _process(delta: float) -> void:
+	bod.scale.y = lerpf(bod.scale.y, up_direction.y * -1, delta * 10)
+	if velocity.x > 0:
+		facing = true
+	if velocity.x < 0:
+		facing = false
+	if facing:
+		bod.scale.x = lerpf(bod.scale.x, 1, delta * 10)
+	else:
+		bod.scale.x = lerpf(bod.scale.x, -1, delta * 10)
 
 
 func _sync_motion() -> void:
@@ -103,6 +118,7 @@ func _sync_motion() -> void:
 
 
 func _physics_process(delta:float) -> void:
+	ong = is_on_floor()
 	if not is_on_floor():
 		velocity += get_gravity() * delta * Vector2(up_direction.x, up_direction.y * -1)
 	else:
