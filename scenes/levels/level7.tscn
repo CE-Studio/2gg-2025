@@ -20,36 +20,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4u223"]
 size = Vector2(1307, 501)
 
-[sub_resource type="Animation" id="Animation_4u223"]
-resource_name = "part1"
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bush:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat64Array(0.25, 0.4, 0.55),
-"transitions": PackedFloat64Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.88), Vector2(1, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("oough")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat64Array(1),
-"transitions": PackedFloat64Array(1),
-"values": [{
-"args": [],
-"method": &"run"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_vd1yw"]
 length = 0.001
 tracks/0/type = "value"
@@ -99,6 +69,36 @@ tracks/3/keys = {
 "transitions": PackedFloat64Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4u223"]
+resource_name = "part1"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bush:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat64Array(0.25, 0.4, 0.55),
+"transitions": PackedFloat64Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.88), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("oough")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat64Array(1),
+"transitions": PackedFloat64Array(1),
+"values": [{
+"args": [],
+"method": &"run"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_l0cwd"]
