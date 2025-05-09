@@ -1,5 +1,5 @@
 class_name Respawner
-extends Node2D
+extends Marker2D
 
 
 @export var template:PackedScene

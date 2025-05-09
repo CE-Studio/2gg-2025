@@ -105,7 +105,7 @@ func _sync_motion() -> void:
 			hb.scale.x = 1
 		Masks.BEAR:
 			up_direction = Vector2.UP
-			hb.scale.x = 2
+			hb.scale.x = 1
 			pointer.hide()
 		Masks.CAT:
 			up_direction = Vector2.UP
