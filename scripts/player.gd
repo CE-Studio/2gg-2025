@@ -33,6 +33,7 @@ static var has_mask:Array[bool] = [
 
 static var instance:Player
 static var spawnpoint := Vector2.ZERO
+static var was_mouse := true
 
 
 var jumped := false
@@ -153,7 +154,12 @@ func _physics_process(delta:float) -> void:
 	_movement_and_input(delta)
 	move_and_slide()
 	if pointer.visible:
-		pointer.look_at(GlobalCamera.get_mouse_pos())
+		if was_mouse:
+			pointer.look_at(GlobalCamera.get_mouse_pos())
+		else:
+			var v = Input.get_vector("game_target_left", "game_target_right", "game_target_up", "game_target_down")
+			if v:
+				pointer.look_at(to_global(v))
 	if (global_position.y > 10000) or (global_position.y < -10000):
 		velocity = Vector2.ZERO
 		mask_state = Masks.NONE
@@ -164,9 +170,9 @@ func _physics_process(delta:float) -> void:
 		pointer.self_modulate = Color.WHITE
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("game_debug"):
-		$"../testlines/l1".run()
+#func _input(event: InputEvent) -> void:
+#	if event.is_action_pressed("game_debug"):
+#		$"../testlines/l1".run()
 
 
 func _movement_and_input(delta:float) -> void:
@@ -194,6 +200,14 @@ func _masks(delta:float) -> void:
 	var trigger := false
 	if Input.is_action_just_pressed("game_action_mouse"):
 		trigger = true
+		was_mouse = true
+		dir = pointer.transform.basis_xform(Vector2.RIGHT).normalized()
+	elif Input.is_action_just_pressed("game_action_controller"):
+		var v = Input.get_vector("game_target_left", "game_target_right", "game_target_up", "game_target_down")
+		if v:
+			pointer.look_at(to_global(v))
+		trigger = true
+		was_mouse = false
 		dir = pointer.transform.basis_xform(Vector2.RIGHT).normalized()
 	if trigger:
 		match mask_state:
